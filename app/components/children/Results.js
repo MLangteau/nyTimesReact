@@ -15,15 +15,13 @@ class Results extends React.Component {
         <div className="panel-body">
           {/*{this.props.results.map((foundArticle, parseInt(this.state.searchNumRecords) => {*/}
           {/*{this.props.results.map(function(foundArticle, i){*/}
-          console.log("this.prop.results: ", this.prop.results);
-          {this.props.results.map((foundArticle, i) => {
-                 return  (
-                     <div key={i}> <a href={foundArticle.url}>{foundArticle.sectionname}{foundArticle.headline}</a>
-                        <button type="saveBtn" className="btn btn-primary">Save</button>
-                    </div>
-                )
+          {this.props.results.map (foundArticle => {
+             return  (
+                 <div key={foundArticle.headline}> <a href={foundArticle.url}>{foundArticle.sectionname}{foundArticle.headline}</a>
+                    <button type="saveBtn" className="btn btn-primary">Save</button>
+                </div>
+            )
           }
-              // )
               )}
         </div>
       </div>

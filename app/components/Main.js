@@ -1,4 +1,6 @@
 import React from "react";
+// import {Link} from 'react-router';
+// Use later import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 
 // Import sub-components
 import Form from "./children/Form";
@@ -17,7 +19,7 @@ class Main extends React.Component {
     this.state = {
         searchTopic: "",
         searchStartYear: "",
-        results: {},
+        results: [],
         saved: []
     };
 
