@@ -17,12 +17,14 @@ class Results extends React.Component {
           {/*{this.props.results.map(function(foundArticle, i){*/}
           {this.props.results.map (foundArticle => {
              return  (
-                 <div key={foundArticle.headline}> <a href={foundArticle.url}>{foundArticle.sectionname}{foundArticle.headline}</a>
-                    <button type="saveBtn" className="btn btn-primary">Save</button>
+                 <div key={foundArticle.headline}> <a href={foundArticle.url}>{foundArticle.headline}</a>
+              {/*<button onClick=???? type="saveBtn" className="btn btn-primary">Save</button>*/}
+              <br></br>
+               <button type="saveBtn" className="btn btn-primary">Save</button>
+
                 </div>
             )
-          }
-              )}
+          })}
         </div>
       </div>
     );

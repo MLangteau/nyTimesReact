@@ -37,10 +37,20 @@ class Main extends React.Component {
         helpers.runQuery(this.state.searchTopic, this.state.searchStartYear).then(function(data){
         if (data !== this.state.results) {
             console.log("FOR EYE this.state.searchNumRecords: " + parseInt(this.state.searchNumRecords));
-            for (var i = 0; i < parseInt(this.state.searchNumRecords); i++) {
+            var maxRecords = parseInt(this.state.searchNumRecords);
+            console.log("mrl: " + maxRecords);
+            // if ((parseInt(maxRecords) >= 10) || isNaN()) {
+            if (parseInt(maxRecords) <= 10 ) {
+                console.log("less than or equal to 9");
+            }
+            else {
+                maxRecords = 10;
+                console.log("Just RESET FOR LESS THAN 10: " + maxRecords);
+            }
+            for (var i = 0; i < maxRecords; i++) {
                 console.log("inside i: " + i);
 
-  var eachResult = {headline: data[i].headline.main, pubdate:data[i].pub_date, sectionname: data[i].section_name, url:data[i].web_url};
+                var eachResult = {headline: data[i].headline.main, pubdate:data[i].pub_date, sectionname: data[i].section_name, url:data[i].web_url};
 
                 console.log(`headline: ${data[i].headline.main}`);
                 console.log(`pubdate: ${data[i].pub_date}`);
@@ -71,6 +81,13 @@ class Main extends React.Component {
       this.setState({searchStartYear: startYear});
   }
 
+  btnClick () {
+      // helpers.saveIt(this.state.searchTopic, this.state.searchStartYear).then(function(data){
+      console.log("clicking this is where we save");
+      this.setState({saved: this.state.saved});
+      console.log("saved this.state.saved: ", this.state.saved);
+  }
+
   render() {
 
     return (
@@ -87,8 +104,8 @@ class Main extends React.Component {
 
           <div className="col-md-6">
 
-            {/*<Results results={this.state.results}  onClick={this.btnClick.bind(this)}/>*/}
-              <Results results={this.state.results}/>
+            <Results results={this.state.results}  onClick={this.btnClick.bind(this)}/>
+              {/*<Results results={this.state.results}/>*/}
 
           </div>
 
