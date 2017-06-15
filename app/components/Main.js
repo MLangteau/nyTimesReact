@@ -15,33 +15,58 @@ class Main extends React.Component {
     super(props);
 
     this.state = {
-        searchTerm: "",
-        results: [],
+        searchTopic: "",
+        searchStartYear: "",
+        results: {},
         saved: []
     };
 
-    this.setTerm = this.setTerm.bind(this);
+    // this.setTopic = this.setTopic.bind(this);            // moved this bind into the div instead
+    // this.setStartYear = this.setStartYear.bind(this);    // moved this bind into the div instead
   }
 
   componentDidUpdate(prevProps, prevState) {
+//  New topic/search was entered
+    if (prevState.searchTopic !== this.state.searchTopic) {
+        console.log("Search was Entered");
+        this.setState({results: []});  //  must be set here, to show results is an array of objects.
 
-    if (prevState.searchTerm !== this.state.searchTerm) {
-      console.log("UPDATED");
-
-      helpers.runQuery(this.state.searchTerm).then((data) => {
+      // helpers.runQuery(this.state.searchTopic, this.state.searchStartYear).then(data => {
+        helpers.runQuery(this.state.searchTopic, this.state.searchStartYear).then(function(data){
         if (data !== this.state.results) {
-          console.log(data);
+            console.log("FOR EYE this.state.searchNumRecords: " + parseInt(this.state.searchNumRecords));
+            for (var i = 0; i < parseInt(this.state.searchNumRecords); i++) {
+                console.log("inside i: " + i);
 
-          this.setState({ results: data });
+  var eachResult = {headline: data[i].headline.main, pubdate:data[i].pub_date, sectionname: data[i].section_name, url:data[i].web_url};
+
+                console.log(`headline: ${data[i].headline.main}`);
+                console.log(`pubdate: ${data[i].pub_date}`);
+                console.log(`sectionname: ${data[i].section_name}`);
+                console.log(`url: ${data[i].web_url}`);
+
+                console.log("eachResult: " + eachResult);
+
+                this.setState({results: this.state.results.concat(eachResult)});
+                console.log("after populate - this.state.results: " + this.state.results);
+                console.log(`*** populate - this.state.results[i]: ${this.state.results[i]}`);
+                // console.log(`after populate - this.state.results[i]: " + ${this.state.results[${i}]}`);
+            }
         }
-      });
+      }.bind(this));
     }
   }
 
-  setTerm(topic){
-    this.setState({
-        searchTerm: topic
-    });
+  setTopic(topic){
+      this.setState({searchTopic: topic });
+  }
+
+  setNumRecords(numRecords){
+      this.setState({searchNumRecords: numRecords});
+  }
+
+  setStartYear(startYear){
+      this.setState({searchStartYear: startYear});
   }
 
   render() {
@@ -54,19 +79,20 @@ class Main extends React.Component {
 
           <div className="col-md-6">
 
-            <Form setTerm={this.setTerm} />
+            <Form setTopic={this.setTopic.bind(this)} setStartYear={this.setStartYear.bind(this)} setNumRecords={this.setNumRecords.bind(this)}/>
 
           </div>
 
           <div className="col-md-6">
 
-            <Results resultsArea={this.state.results} />
+            {/*<Results results={this.state.results}  onClick={this.btnClick.bind(this)}/>*/}
+              <Results results={this.state.results}/>
 
           </div>
 
             <div className="col-md-6">
 
-                <SavedArticles savedArea={this.state.saved} />
+                <SavedArticles saved={this.state.saved} />
 
             </div>
 
@@ -77,5 +103,5 @@ class Main extends React.Component {
   }
 }
 
-// Export the componen back for use in other files
+// Export the component back for use in other files
 export default Main;

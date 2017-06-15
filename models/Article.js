@@ -9,16 +9,12 @@ var ArticleSchema = new Schema({
         type: String,
         required: true
     },
-    articleDate: {
-        type: String,
+    date: {
+        type: Date,
         required: true
     },
     url: {
         type: String,
-        required: true
-    },
-    dateSaved: {
-        type: date,
         required: true
     }
 });

@@ -13,9 +13,18 @@ class Results extends React.Component {
           <h3 className="panel-title text-center">Results</h3>
         </div>
         <div className="panel-body">
-
-          {this.props.resultsArea} <button type="saveBtn" className="btn btn-primary">Save</button>
-
+          {/*{this.props.results.map((foundArticle, parseInt(this.state.searchNumRecords) => {*/}
+          {/*{this.props.results.map(function(foundArticle, i){*/}
+          console.log("this.prop.results: ", this.prop.results);
+          {this.props.results.map((foundArticle, i) => {
+                 return  (
+                     <div key={i}> <a href={foundArticle.url}>{foundArticle.sectionname}{foundArticle.headline}</a>
+                        <button type="saveBtn" className="btn btn-primary">Save</button>
+                    </div>
+                )
+          }
+              // )
+              )}
         </div>
       </div>
     );

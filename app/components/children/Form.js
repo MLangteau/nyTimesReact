@@ -1,13 +1,15 @@
 import React from "react";
 
+import Header from "./Header";
+
 class Form extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
         topic: "",
-
-
+        startYear: "",
+        numRecords: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -22,11 +24,20 @@ class Form extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log("CLICK");
-    console.log(this.state.topic);
-    // console.log(this.state.Year);
-    this.props.setTerm(this.state.topic);
+
+    console.log("SUBMIT was done");
+
+    console.log("this.state.topic: " + this.state.topic);
+    console.log("this.state.startYear: " + this.state.startYear);
+    console.log("this.state.numRecords: " + this.state.numRecords);
+
+    this.props.setTopic(this.state.topic);
+    this.props.setStartYear(this.state.startYear);
+    this.props.setNumRecords(this.state.numRecords);
+
     this.setState({ topic: "" });
+    this.setState({ startYear: "" });
+    this.setState({ numRecords: "" });
   }
 
   render() {
@@ -34,9 +45,10 @@ class Form extends React.Component {
     return (
 
       <div className="panel panel-default">
-        <div className="panel-heading">
-          <h3 className="panel-title text-center">New York Times Articles Scrubber</h3>
-        </div>
+        {/*<div className="panel-heading">*/}
+          {/*<h3 className="panel-title text-center">New York Times Articles Scrubber</h3>*/}
+        {/*</div>*/}
+        <Header />
         <div className="panel-body text-center">
 
           <form onSubmit={this.handleSubmit}>
@@ -61,30 +73,30 @@ class Form extends React.Component {
                 onChange={this.handleChange}
                 required
               />
-              {/*<br />*/}
-              {/*<h4 className="panel-title text-center">*/}
-                {/*<strong>Number of Articles (1-10)</strong>*/}
-              {/*</h4>*/}
-              {/*<input*/}
-                  {/*type="text"*/}
-                  {/*className="form-control text-center"*/}
-                  {/*id="numRecords"*/}
-                  {/*value={this.state.numRecords}*/}
-                  {/*onChange={this.handleChange}*/}
-                  {/*required*/}
-              {/*/>*/}
-              {/*<br />*/}
-              {/*<h4 className="panel-title text-center">*/}
-                {/*<strong>Start Year</strong>*/}
-              {/*</h4>*/}
-              {/*<input*/}
-                  {/*type="text"*/}
-                  {/*className="form-control text-center"*/}
-                  {/*id="startYear"*/}
-                  {/*value={this.state.startYear}*/}
-                  {/*onChange={this.handleChange}*/}
-                  {/*required*/}
-              {/*/>*/}
+              <br />
+              <h4 className="panel-title text-center">
+                <strong>Number of Articles (1-10)</strong>
+              </h4>
+              <input
+                  type="text"
+                  className="form-control text-center"
+                  id="numRecords"
+                  value={this.state.numRecords}
+                  onChange={this.handleChange}
+                  required
+              />
+              <br />
+              <h4 className="panel-title text-center">
+                <strong>Start Year</strong>
+              </h4>
+              <input
+                  type="text"
+                  className="form-control text-center"
+                  id="startYear"
+                  value={this.state.startYear}
+                  onChange={this.handleChange}
+                  required
+              />
               {/*<br />*/}
               {/*<h4 className="panel-title text-center">*/}
                 {/*<strong>End Year</strong>*/}
@@ -97,7 +109,8 @@ class Form extends React.Component {
                   {/*onChange={this.handleChange}*/}
                   {/*required*/}
               {/*/>*/}
-              {/*<br />*/}
+              <br />
+              <br />
 
               <button
                 type="searchBtn"
