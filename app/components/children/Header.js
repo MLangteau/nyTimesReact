@@ -5,7 +5,7 @@ class Header extends React.Component {
     render() {
         return (
                 <div className="panel-heading">
-                    <h3 className="panel-title text-center">New York Times Articles Scrubber</h3>
+                    <h3 className="panel-title text-center">New York Times Articles Scrubber!</h3>
                 </div>
         );
     }

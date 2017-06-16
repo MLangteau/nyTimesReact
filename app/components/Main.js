@@ -35,23 +35,47 @@ class Main extends React.Component {
 
       // helpers.runQuery(this.state.searchTopic, this.state.searchStartYear).then(data => {
         helpers.runQuery(this.state.searchTopic, this.state.searchStartYear).then(function(data){
-        if (data !== this.state.results) {
+        if ((data !== this.state.results) && data !== "") {
             console.log("FOR EYE this.state.searchNumRecords: " + parseInt(this.state.searchNumRecords));
             var maxRecords = parseInt(this.state.searchNumRecords);
             console.log("mrl: " + maxRecords);
-            // if ((parseInt(maxRecords) >= 10) || isNaN()) {
-            if (parseInt(maxRecords) <= 10 ) {
-                console.log("less than or equal to 9");
-            }
-            else {
-                maxRecords = 10;
-                console.log("Just RESET FOR LESS THAN 10: " + maxRecords);
-            }
+            // Checking the user input for the Number of Articles they would like to see (set to 5, if not 1-10)
+            // if (parseInt(maxRecords) >= 1  &&  parseInt(maxRecords) <= 10) {
+            //     console.log("Number of Articles requested is between 1 and 10");
+            // }
+            // else {
+            //     //  If did not enter appropriately, they will be given 5 Artic
+            //     maxRecords = 5;
+            //     console.log("Just RESET Number of Articles to: " + maxRecords);
+            // }
+
+            // Checking the user input for the Number of Articles they would like to see (set to 5, if not 1-10)
+            if ((maxRecords >= 1)  &&  (maxRecords <= 10 )){
+                console.log("Number of Articles requested is between 1 and 10");
+                //  leave the number of records alone.
+            } else if (maxRecords > 10){
+                //  If they entered a number greater than 10, set the default to 10 Articles
+                    maxRecords = 10;
+                    console.log("Just RESET Number of Articles to: " + maxRecords);
+                }
+                else {
+                    // if (maxRecords > 10) {
+                    //  If did not enter appropriately, they will be given 5 Articles
+                    maxRecords = 5;
+                    console.log("Just RESET Number of Articles to: " + maxRecords);
+                }
+
             for (var i = 0; i < maxRecords; i++) {
                 console.log("inside i: " + i);
+                var indexForKey = 1;
+                var eachResult = {
+                    indexForKey: (i * Math.random()),
+                    headline: data[i].headline.main,
+                    pubdate:data[i].pub_date,
+                    sectionname: data[i].section_name,
+                    url:data[i].web_url};
 
-                var eachResult = {headline: data[i].headline.main, pubdate:data[i].pub_date, sectionname: data[i].section_name, url:data[i].web_url};
-
+                console.log(`indexForKey: ${indexForKey}`);
                 console.log(`headline: ${data[i].headline.main}`);
                 console.log(`pubdate: ${data[i].pub_date}`);
                 console.log(`sectionname: ${data[i].section_name}`);
@@ -65,6 +89,10 @@ class Main extends React.Component {
                 // console.log(`after populate - this.state.results[i]: " + ${this.state.results[${i}]}`);
             }
         }
+        // else
+        //     {
+        //         this.setState({results: ["Please try another "]})
+        // }
       }.bind(this));
     }
   }
@@ -89,7 +117,6 @@ class Main extends React.Component {
   }
 
   render() {
-
     return (
 
       <div className="container">

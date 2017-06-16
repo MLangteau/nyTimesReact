@@ -12,17 +12,20 @@ class Form extends React.Component {
         numRecords: ""
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);  // both set here so we do not duplicate in render
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+//  handleChange listens for each keystroke
   handleChange(event) {
     console.log(`event.target.value: ${event.target.value}`);
+
     var newState = {};
     newState[event.target.id] = event.target.value;
     this.setState(newState);
   }
 
+//  handleSubmit listens for the submit button
   handleSubmit(event) {
     event.preventDefault();
 

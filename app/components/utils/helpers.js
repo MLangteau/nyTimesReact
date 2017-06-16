@@ -20,12 +20,13 @@ var helpers = {
 
       console.log("THIS IS RESPONSE: ", response);
       var useableResp = response.data.response.docs;
-      if (useableResp) {
+      if (parseInt(response.data.response.meta.hits) > 0) {
+      // if (useableResp) {
           console.log("getting useable data");
           return useableResp;
       }
       else {
-          console.log("no response");
+          console.log("Response not good");
           return "";
       }
     });
