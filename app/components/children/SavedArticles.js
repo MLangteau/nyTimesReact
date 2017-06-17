@@ -6,6 +6,11 @@ class SavedArticles extends React.Component {
         super(props);
     }
 
+    removeSaved(event){
+        console.log(`In removeSaved`);
+        console.log("Remove button clicked ", event.target.value);
+    }
+
     render() {
         return (
             <div className="panel panel-default">
@@ -14,7 +19,20 @@ class SavedArticles extends React.Component {
                 </div>
                 <div className="panel-body">
 
-                    {this.props.savedArea} <button type="removeBtn" className="btn btn-primary">Remove</button>
+                    {/* passing the clickedIndex for the helpers.articleRemove - may not be created yet */}
+                    {this.props.saved.map ((foundArticle, clickedIndex) => {
+                        return  (
+                            <div className="articleItems">
+                                    <div key={clickedIndex}>
+                                        <a href={foundArticle.url}>{foundArticle.title}</a>
+                                        {/*<button onClick={this.removeSaved.bind(this)}*/}
+                                        <button  className="btn btn-danger" value={clickedIndex}
+                                        >Remove Article</button>
+                                        <br></br>
+                                    </div>
+                            </div>
+                        )
+                    })}
 
                 </div>
             </div>

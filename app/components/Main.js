@@ -27,6 +27,18 @@ class Main extends React.Component {
     // this.setStartYear = this.setStartYear.bind(this);    // moved this bind into the div instead
   }
 
+    // The moment the page renders get the saved Articles
+    componentDidMount () {
+        // Get the last few saved Articles.
+        helpers.getSavedArticles().then(function(response) {
+            console.log(response);
+            if (response !== this.state.saved) {
+                console.log("Articles in DB", response.data);
+                this.setState({ saved: response.data });
+            }
+        }.bind(this));
+    }
+
   componentDidUpdate(prevProps, prevState) {
 //  New topic/search was entered
     if (prevState.searchTopic !== this.state.searchTopic) {
@@ -70,14 +82,9 @@ class Main extends React.Component {
                 console.log(`pubdate: ${data[i].pub_date}`);
                 console.log(`sectionName: ${data[i].section_name}`);
                 console.log(`url: ${data[i].web_url}`);
-
                 console.log("eachResult: ", eachResult);
 
                 dataArray.push(eachResult);
-
-                console.log("after populate - this.state.results: " + this.state.results);
-                console.log(`*** populate - this.state.results[i]: ${this.state.results[i]}`);
-                // console.log(`after populate - this.state.results[i]: " + ${this.state.results[${i}]}`);
             }
             this.setState({results: dataArray});
             console.log("ALL OF THE ARTICLES!!", this.state.results);

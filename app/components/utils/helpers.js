@@ -42,7 +42,7 @@ var helpers = {
         })
     },
 
-    getArticles: () => {
+    getSavedArticles: () => {
         // Send a GET request
         console.log(`made it to the helpers function-GET`);
         return axios.get('/api');

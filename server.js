@@ -45,7 +45,7 @@ app.get("/", function(req, res) {
 // This is the route we will send GET requests to retrieve our most recent search data.
 // We will call this route the moment our page gets rendered
 app.get("/api", function(req, res) {
-
+    console.log("Made it to finding the records");
     // We will find all the records, sort it in descending order, then limit the records to 5
     Article.find({}).sort([
         ["saveDate", "descending"]
@@ -54,6 +54,7 @@ app.get("/api", function(req, res) {
             console.log(err);
         }
         else {
+            console.log("got saved Articles from MongoDB");
             res.send(doc);
         }
     });
