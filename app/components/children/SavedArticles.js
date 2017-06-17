@@ -20,13 +20,13 @@ class SavedArticles extends React.Component {
                 <div className="panel-body">
 
                     {/* passing the clickedIndex for the helpers.articleRemove - may not be created yet */}
-                    {this.props.saved.map ((foundArticle, clickedIndex) => {
+                    {this.props.saved.map (foundArticle => {
                         return  (
                             <div className="articleItems">
-                                    <div key={clickedIndex}>
+                                    <div key={foundArticle._id}>
                                         <a href={foundArticle.url}>{foundArticle.title}</a>
                                         {/*<button onClick={this.removeSaved.bind(this)}*/}
-                                        <button  className="btn btn-danger" value={clickedIndex}
+                                        <button  className="btn btn-danger" value={foundArticle._id}
                                         >Remove Article</button>
                                         <br></br>
                                     </div>
