@@ -5,16 +5,20 @@ var Schema = mongoose.Schema;
 
 // Create a Schema for capturing articles.
 var ArticleSchema = new Schema({
-    date: {
-        type: Date,
-        required: true
-    },
     title: {
         type: String,
         required: true
     },
-        url: {
+    pubDate: {
+        type: Date,
+        required: true
+    },
+    url: {
         type: String,
+        required: true
+    },
+    saveDate: {
+        type: Date,
         required: true
     }
 });

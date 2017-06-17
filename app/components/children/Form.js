@@ -18,7 +18,6 @@ class Form extends React.Component {
 
 //  handleChange listens for each keystroke
   handleChange(event) {
-    console.log(`event.target.value: ${event.target.value}`);
 
     var newState = {};
     newState[event.target.id] = event.target.value;

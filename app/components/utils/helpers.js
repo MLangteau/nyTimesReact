@@ -31,10 +31,22 @@ var helpers = {
       }
     });
   },
-    resultfunction: () => {
-        console.log("resultfunction");
-    }
+    postArticle: (stuff) => {
+        console.log(`made it to the helpers function-POST`);
+        console.log(`stuff.pubDate for database ${stuff.pubDate}`);
+        // Send a POST request
+        return axios.post('/api', {
+                pubDate: stuff.pubDate,
+                title: stuff.headline,
+                url: stuff.url
+        })
+    },
 
+    getArticles: () => {
+        // Send a GET request
+        console.log(`made it to the helpers function-GET`);
+        return axios.get('/api');
+    }
 };
 
 // We export the helpers function (which contains getGithubInfo)

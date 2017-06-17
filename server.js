@@ -48,7 +48,7 @@ app.get("/api", function(req, res) {
 
     // We will find all the records, sort it in descending order, then limit the records to 5
     Article.find({}).sort([
-        ["date", "descending"]
+        ["saveDate", "descending"]
     ]).limit(5).exec(function(err, doc) {
         if (err) {
             console.log(err);
@@ -61,17 +61,17 @@ app.get("/api", function(req, res) {
 
 // This is the route we will send POST requests to save each search.
 app.post("/api", function(req, res) {
+    console.log("BODY-pubDate: " + req.body.pubDate);
     console.log("BODY-title: " + req.body.title);
-    console.log("BODY-articleDate: " + req.body.articleDate);
     console.log("BODY-url: " + req.body.url);
-    console.log("BODY-dateSaved: " + req.body.dateSaved);
+    // console.log("BODY-dateSaved: " + req.body.dateSaved);
     // Here we'll save the location based on the JSON input.
     // We'll use Date.now() to always get the current date time
     Article.create({
+        pubDate: req.body.pubDate,
         title: req.body.title,
-        articleDate: req.body.articleDate,
         url: req.body.url,
-        dateSaved: Date.now()
+        saveDate: Date.now()
     }, function(err) {
         if (err) {
             console.log(err);
