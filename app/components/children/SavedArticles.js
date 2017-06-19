@@ -7,13 +7,12 @@ class SavedArticles extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            ArticlesLeft: []
-        };
-
+        // this.state = {                          ****  probably will not need this ******
+        //     ArticlesList: []
+        // }
     }
 
-    removeSaved(event){
+    removeClick(event){
         console.log(`In removeSaved`);
         console.log("Remove button clicked ", event.target.value);
         // console.log("article ", this.state.ArticlesLeft[event.target.value]);
@@ -23,27 +22,24 @@ class SavedArticles extends React.Component {
             console.log(`after helpers.removeArticle`);
             console.log(response);
 
-            // After we've done the remove, get the updated article list
+            // After we've done the remove, get the updated saved articles
             helpers.getSavedArticles().then(function(response) {
 
                 console.log("Articles left in DB after delete", response.data);
 
                 this.setState({ saved: response.data });
+                console.log("this.state.saved removeClick: ", this.state.saved);
+                console.log("this.props.saved removeClick: ", this.props.saved);
 
             }.bind(this));
 
         }.bind(this))
     }
 
-    componentWillReceiveProps(nextProps) {
-        console.log(`This componentWillReceiveProps inside in SavedArticles.js. `);
-        this.setState({
-            ArticlesLeft: nextProps.saved
-        });
-        console.log("this.state.ArticlesLeft: ", this.state.ArticlesLeft);
-    }
-
     render() {
+
+        console.log ("this.props.saved mrl: " + this.props.saved);
+
         return (
             <div className="panel panel-default">
                 <div className="panel-heading">
@@ -57,7 +53,7 @@ class SavedArticles extends React.Component {
                             <div className="articleItems">
                                     <div key={foundArticle._id}>
                                         <a href={foundArticle.url}>{foundArticle.title}</a>
-                                        <button onClick={this.removeSaved.bind(this)}
+                                        <button onClick={this.removeClick.bind(this)}
                                         className="btn btn-danger" value={foundArticle._id}
                                         >Remove Article</button>
                                         <br></br>

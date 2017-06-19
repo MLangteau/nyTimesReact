@@ -62,10 +62,7 @@ app.get("/api/saved", function(req, res) {
 
 // This is the route we will send POST requests to save each search.
 app.post("/api/saved", function(req, res) {
-    console.log("BODY-pubDate: " + req.body.pubDate);
-    console.log("BODY-title: " + req.body.title);
-    console.log("BODY-url: " + req.body.url);
-    // console.log("BODY-dateSaved: " + req.body.dateSaved);
+    console.log("BODY-pubDate: " + req.body.pubDate + " BODY-title: " + req.body.title + " BODY-url: " + req.body.url);
     // Here we'll save the article based on the JSON input.
     // We'll use Date.now() to always get the current date time
     Article.create({
@@ -85,12 +82,7 @@ app.post("/api/saved", function(req, res) {
 
 // This is the route we will send DELETE requests to remove the selected article.
 app.delete("/api/delete/:id", function(req, res) {
-    console.log("IN THE delete/remove req.body: ", req.body);
-    console.log("                    res.query: ", req.query);
-    console.log("                   res.params: ", req.params);
-    // console.log("BODY_id: " + req.body._id + " BODY-pubDate: " + req.body.pubDate);
-    // console.log("BODY-title: " + req.body.title + " BODY-url: " + req.body.url);
-    // console.log("BODY-dateSaved: " + req.body.dateSaved);
+    console.log("IN THE delete/remove req.params: ", req.params);
     // Here we'll remove the article based on the JSON input.
 
     Article.remove({

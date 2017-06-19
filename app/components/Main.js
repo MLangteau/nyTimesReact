@@ -27,7 +27,7 @@ class Main extends React.Component {
     // this.setStartYear = this.setStartYear.bind(this);    // moved this bind into the div instead
   }
 
-    // The moment the page renders get the saved Articles
+    // The moment the page renders the first time get the saved Articles from the database
     componentDidMount () {
         // Get the last few saved Articles.
         helpers.getSavedArticles().then(function(response) {
@@ -49,7 +49,7 @@ class Main extends React.Component {
         if ((data !== this.state.results) && data !== "") {
             console.log("FOR EYE this.state.searchNumRecords: " + parseInt(this.state.searchNumRecords));
             var maxRecords = parseInt(this.state.searchNumRecords);
-            console.log("mrl: " + maxRecords);
+            console.log("initial maxRecords: " + maxRecords);
             // Checking the user input for the Number of Articles they would like to see (set to 5, if not 1-10)
             if ((maxRecords >= 1)  &&  (maxRecords <= 10 )){
                 console.log("Number of Articles requested is between 1 and 10");
@@ -87,7 +87,7 @@ class Main extends React.Component {
                 dataArray.push(eachResult);
             }
             this.setState({results: dataArray});
-            console.log("ALL OF THE ARTICLES!!", this.state.results);
+            console.log("ALL OF THE searched ARTICLES (NYTimes) !!", this.state.results);
         }
       }.bind(this));
     }

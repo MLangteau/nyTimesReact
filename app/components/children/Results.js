@@ -24,21 +24,23 @@ class Results extends React.Component {
           // After we've done the post... then get the updated articles
           helpers.getSavedArticles().then(function(response) {
 
-              console.log("Articles in DB", response.data);
+              console.log("Articles in DB-results", response.data);
 
               this.setState({ saved: response.data });
 
+              console.log("this.state.saved btnClick: ", this.state.saved);
+              console.log("this.props.saved btnClick: ", this.props.saved);
           }.bind(this));
-
       }.bind(this))
   }
 
   componentWillReceiveProps(nextProps) {
       console.log(`This componentWillReceiveProps inside in Results.js. `);
-      this.setState({
-          ArticlesFound: nextProps.results
-      });
-      console.log("this.state.ArticlesFound ", this.state.ArticlesFound);
+      if (this.props.results !== nextProps.results) {
+            this.setState({
+                ArticlesFound: nextProps.results
+            })
+      }
   }
 
   render() {
