@@ -21,7 +21,7 @@ class Results extends React.Component {
           console.log(`after posted Article`);
           console.log(response);
 
-          // After we've done the post... then get the updated history
+          // After we've done the post... then get the updated articles
           helpers.getSavedArticles().then(function(response) {
 
               console.log("Articles in DB", response.data);
@@ -34,7 +34,7 @@ class Results extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-      console.log(`This componentWillReceiveProps. `);
+      console.log(`This componentWillReceiveProps inside in Results.js. `);
       this.setState({
           ArticlesFound: nextProps.results
       });

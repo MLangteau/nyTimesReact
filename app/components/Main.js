@@ -33,7 +33,7 @@ class Main extends React.Component {
         helpers.getSavedArticles().then(function(response) {
             console.log(response);
             if (response !== this.state.saved) {
-                console.log("Articles in DB", response.data);
+                console.log("Articles in DB-MAIN", response.data);
                 this.setState({ saved: response.data });
             }
         }.bind(this));

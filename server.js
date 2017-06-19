@@ -44,7 +44,7 @@ app.get("/", function(req, res) {
 
 // This is the route we will send GET requests to retrieve our most recent search data.
 // We will call this route the moment our page gets rendered
-app.get("/api", function(req, res) {
+app.get("/api/saved", function(req, res) {
     console.log("Made it to finding the records");
     // We will find all the records, sort it in descending order, then limit the records to 5
     Article.find({}).sort([
@@ -61,12 +61,12 @@ app.get("/api", function(req, res) {
 });
 
 // This is the route we will send POST requests to save each search.
-app.post("/api", function(req, res) {
+app.post("/api/saved", function(req, res) {
     console.log("BODY-pubDate: " + req.body.pubDate);
     console.log("BODY-title: " + req.body.title);
     console.log("BODY-url: " + req.body.url);
     // console.log("BODY-dateSaved: " + req.body.dateSaved);
-    // Here we'll save the location based on the JSON input.
+    // Here we'll save the article based on the JSON input.
     // We'll use Date.now() to always get the current date time
     Article.create({
         pubDate: req.body.pubDate,
@@ -81,6 +81,33 @@ app.post("/api", function(req, res) {
             res.send("Saved Search");
         }
     });
+});
+
+// This is the route we will send DELETE requests to remove the selected article.
+app.delete("/api/delete/:id", function(req, res) {
+    console.log("IN THE delete/remove req.body: ", req.body);
+    console.log("                    res.query: ", req.query);
+    console.log("                   res.params: ", req.params);
+    // console.log("BODY_id: " + req.body._id + " BODY-pubDate: " + req.body.pubDate);
+    // console.log("BODY-title: " + req.body.title + " BODY-url: " + req.body.url);
+    // console.log("BODY-dateSaved: " + req.body.dateSaved);
+    // Here we'll remove the article based on the JSON input.
+
+    Article.remove({
+        _id: req.params.id,
+    }, function(err) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send("Removed");
+        }
+    });
+});
+
+// Main "/" Route. This will redirect the user to our rendered React application
+app.use("/", function(req, res) {
+    res.sendFile(__dirname + "/public/index.html");
 });
 
 // -------------------------------------------------

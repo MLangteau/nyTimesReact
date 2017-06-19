@@ -35,7 +35,7 @@ var helpers = {
         console.log(`made it to the helpers function-POST`);
         console.log(`stuff.pubDate for database ${stuff.pubDate}`);
         // Send a POST request
-        return axios.post('/api', {
+        return axios.post('/api/saved', {
                 pubDate: stuff.pubDate,
                 title: stuff.headline,
                 url: stuff.url
@@ -45,7 +45,15 @@ var helpers = {
     getSavedArticles: () => {
         // Send a GET request
         console.log(`made it to the helpers function-GET`);
-        return axios.get('/api');
+        return axios.get('/api/saved');
+    },
+
+//  remove a single Article
+    removeArticle: (idNum) => {
+        console.log(`made it to the helpers function-DELETE`);
+        console.log(`_id for database remove ${idNum}`);
+        // Send a delete request
+        return axios.delete('api/delete/' + idNum);
     }
 };
 
