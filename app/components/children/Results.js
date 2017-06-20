@@ -10,6 +10,7 @@ class Results extends React.Component {
       this.state = {
           ArticlesFound: []
       };
+      this.btnClick = this.btnClick.bind(this);
   }
 
   btnClick(event){
@@ -34,7 +35,8 @@ class Results extends React.Component {
       }.bind(this))
   }
 
-  componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps(nextProps) {
+      console.log("componentWillReceiveProps in Results");
       console.log(`This componentWillReceiveProps inside in Results.js. `);
       if (this.props.results !== nextProps.results) {
             this.setState({
@@ -74,7 +76,7 @@ class Results extends React.Component {
                     return  (
                             <div className="articleItems" key={foundArticle.indexForKey}>
                                 <a href={foundArticle.url} target="_blank">{foundArticle.headline}</a>
-                                <button onClick={this.btnClick.bind(this)}
+                                <button onClick={this.btnClick}
                                         className="btn btn-primary" value={clickedIndex}
                                 >Save Article</button>
                                 <br></br>

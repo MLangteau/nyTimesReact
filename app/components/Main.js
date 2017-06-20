@@ -28,7 +28,8 @@ class Main extends React.Component {
   }
 
     // The moment the page renders the first time get the saved Articles from the database
-    componentDidMount () {
+    componentDidMount() {
+        console.log("componentDidMount");
         // Get the last few saved Articles.
         helpers.getSavedArticles().then(function(response) {
             console.log(response);
@@ -39,7 +40,8 @@ class Main extends React.Component {
         }.bind(this));
     }
 
-  componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate(prevProps, prevState) {
+      console.log("componentDidUpdate");
 //  New topic/search was entered
     if (prevState.searchTopic !== this.state.searchTopic) {
         console.log("Search was Entered");

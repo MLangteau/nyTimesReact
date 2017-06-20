@@ -7,6 +7,9 @@ var mongoose = require("mongoose");
 // Require Article Schema
 var Article = require("./models/Article");
 
+// Set mongoose to leverage built in JavaScript ES6 Promises
+mongoose.Promise = Promise;
+
 // Create Instance of Express
 var app = express();
 // Sets an initial port. We'll use this later in our listener

@@ -7,9 +7,12 @@ class SavedArticles extends React.Component {
 
     constructor(props) {
         super(props);
-        // this.state = {                          ****  probably will not need this ******
-        //     ArticlesList: []
-        // }
+        this.removeClick = this.removeClick.bind(this)
+    }
+
+    componentWillUpdate(nextProps, nextState){
+        console.log("componentWillUpdate - in Saved");
+        console.log("this.props.saved removeClick-WU: ", this.props.saved);
     }
 
     removeClick(event){
@@ -38,7 +41,7 @@ class SavedArticles extends React.Component {
 
     render() {
 
-        console.log ("this.props.saved mrl: " + this.props.saved);
+        console.log ("this.props.saved in SavedArticles: " + this.props.saved);
 
         return (
             <div className="panel panel-default">
@@ -47,21 +50,20 @@ class SavedArticles extends React.Component {
                 </div>
                 <div className="panel-body">
 
-                    {/* passing the clickedIndex for the helpers.articleRemove - may not be created yet */}
+                    {/* passing the id for the clicked article for the helpers.removeArticle */}
                     {this.props.saved.map (foundArticle => {
                         return  (
                             <div className="articleItems">
-                                    <div key={foundArticle._id}>
-                                        <a href={foundArticle.url}>{foundArticle.title}</a>
-                                        <button onClick={this.removeClick.bind(this)}
-                                        className="btn btn-danger" value={foundArticle._id}
-                                        >Remove Article</button>
-                                        <br></br>
-                                    </div>
+                            <div key={foundArticle._id}>
+                            <a href={foundArticle.url}>{foundArticle.title}</a>
+                            <button onClick={this.removeClick}
+                            className="btn btn-danger" value={foundArticle._id}
+                            >Remove Article</button>
+                            <br></br>
+                            </div>
                             </div>
                         )
                     })}
-
                 </div>
             </div>
         );
