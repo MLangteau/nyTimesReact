@@ -8,10 +8,23 @@ class SavedArticles extends React.Component {
     constructor(props) {
         super(props);
         this.removeClick = this.removeClick.bind(this)
+
+        this.state = {
+            searchSaved: []
+        };
+    }
+
+    setSaved(saved){
+        this.setState({searchSaved: saved });
     }
 
     componentWillUpdate(nextProps, nextState){
         console.log("componentWillUpdate - in Saved");
+        if (this.props.saved !== nextProps.saved) {
+            this.setState({
+                ArticlesList: nextProps.saved
+            })
+        }
         console.log("this.props.saved removeClick-WU: ", this.props.saved);
     }
 
@@ -31,8 +44,12 @@ class SavedArticles extends React.Component {
                 console.log("Articles left in DB after delete", response.data);
 
                 this.setState({ saved: response.data });
+
                 console.log("this.state.saved removeClick: ", this.state.saved);
-                console.log("this.props.saved removeClick: ", this.props.saved);
+
+                this.props.setSaved(this.state.saved);
+
+                console.log("FIXED this.props.saved removeClick: ", this.props.saved);
 
             }.bind(this));
 

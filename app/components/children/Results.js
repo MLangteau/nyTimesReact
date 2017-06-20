@@ -13,7 +13,11 @@ class Results extends React.Component {
       this.btnClick = this.btnClick.bind(this);
   }
 
-  btnClick(event){
+    // setSaved(saved){
+    //     this.setState({searchSaved: saved });
+    // }
+
+    btnClick(event){
       console.log(`In btnClick`);
       console.log("Save button clicked ", event.target.value);
       console.log("article ", this.state.ArticlesFound[event.target.value]);
@@ -30,7 +34,12 @@ class Results extends React.Component {
               this.setState({ saved: response.data });
 
               console.log("this.state.saved btnClick: ", this.state.saved);
-              console.log("this.props.saved btnClick: ", this.props.saved);
+
+
+              // this.props.setSaved(this.state.saved);
+
+              console.log("RESET this.props.saved btnClick: ", this.props.saved);
+
           }.bind(this));
       }.bind(this))
   }
