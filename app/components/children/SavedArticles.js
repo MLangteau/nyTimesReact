@@ -9,22 +9,19 @@ class SavedArticles extends React.Component {
         super(props);
         this.removeClick = this.removeClick.bind(this)
 
-        this.state = {
-            searchSaved: []
-        };
-    }
-
-    setSaved(saved){
-        this.setState({searchSaved: saved });
+        // this.state = {
+        //     searchSaved: []
+        // };
     }
 
     componentWillUpdate(nextProps, nextState){
         console.log("componentWillUpdate - in Saved");
-        if (this.props.saved !== nextProps.saved) {
-            this.setState({
-                ArticlesList: nextProps.saved
-            })
-        }
+//  TOOK THIS OUT - was just trying this out
+        // if (this.props.saved !== nextProps.saved) {
+        //     this.setState({
+        //         searchSaved: nextProps.saved
+        //     })
+        // }
         console.log("this.props.saved removeClick-WU: ", this.props.saved);
     }
 
@@ -47,7 +44,7 @@ class SavedArticles extends React.Component {
 
                 console.log("this.state.saved removeClick: ", this.state.saved);
 
-                this.props.setSaved(this.state.saved);
+                // this.props.setSaved(this.state.saved);
 
                 console.log("FIXED this.props.saved removeClick: ", this.props.saved);
 
