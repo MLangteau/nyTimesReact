@@ -1,0 +1,15 @@
+a {
+    color: white;
+}
+
+.panel-heading {
+    background-color: rgb(49, 96, 181);
+}
+
+.panel-title {
+    color: rgb(86, 165, 238);
+}
+
+.btnHover:hover {
+    background-color: black;
+}

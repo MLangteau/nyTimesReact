@@ -3,6 +3,9 @@ import React from "react";
 // Helper Function
 import helpers from "../utils/helpers";
 
+// Import CSS (
+require('../css/savedArticles.css');
+
 class SavedArticles extends React.Component {
 
     constructor(props) {
@@ -58,7 +61,7 @@ class SavedArticles extends React.Component {
         console.log ("this.props.saved in SavedArticles: " + this.props.saved);
 
         return (
-            <div className="panel panel-default">
+            <div className="panel panel-default smPans">
                 <div className="panel-heading">
                     <h3 className="panel-title text-center">Saved Articles</h3>
                 </div>
@@ -67,14 +70,14 @@ class SavedArticles extends React.Component {
                     {/* passing the id for the clicked article for the helpers.removeArticle */}
                     {this.props.saved.map (foundArticle => {
                         return  (
-                            <div className="articleItems">
-                            <div key={foundArticle._id}>
-                            <a href={foundArticle.url}>{foundArticle.title}</a>
-                            <button onClick={this.removeClick}
-                            className="btn btn-danger" value={foundArticle._id}
-                            >Remove Article</button>
-                            <br></br>
-                            </div>
+                            <div className="articleItems"><p>
+                                <div key={foundArticle._id}>
+                                    <a href={foundArticle.url}>{foundArticle.title}</a>
+                                    <button onClick={this.removeClick}
+                                    className="btn btn-danger btn-sm btnHover" value={foundArticle._id}
+                                    >Remove</button>
+                                    <br></br><br></br>
+                                </div></p>
                             </div>
                         )
                     })}
