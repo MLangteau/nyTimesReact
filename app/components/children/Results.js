@@ -3,6 +3,9 @@ import React from "react";
 // Helper Function
 import helpers from "../utils/helpers";
 
+//  Import CSS
+require('../css/results.css');
+
 class Results extends React.Component {
 
   constructor(props) {
@@ -62,20 +65,21 @@ class Results extends React.Component {
           console.log ("this.props.results: " + this.props.results);
           return (
 
-              <div className="panel panel-default">
+              <div className="panel panel-default smPans">
                   <div className="panel-heading">
                       <h5 className="panel-title text-center">Results</h5>
                   </div>
                   <div className="panel-body">
-                      <h5 className="text-center panel-title">Search Results Not Found</h5>
-                      <h5 className="text-center panel-title">Please Enter or Re-enter your search</h5>
+                      <h6 className="text-center panel-title noResults arrow-down"></h6>
+                      <h6 className="text-center panel-title noResults">Please Enter or Re-enter your Search Criteria</h6>
+                      <h6 className="text-center panel-title noResults">Search results - not found</h6>
                   </div>
               </div>
           )
       }
 
       return (
-          <div className="panel panel-default">
+          <div className="panel panel-default smPans">
                 <div className="panel-heading">
                     <h5 className="panel-title text-center">Results</h5>
                 </div>
@@ -86,9 +90,9 @@ class Results extends React.Component {
                             <div className="articleItems" key={foundArticle.indexForKey}>
                                 <a href={foundArticle.url} target="_blank">{foundArticle.headline}</a>
                                 <button onClick={this.btnClick}
-                                        className="btn btn-primary" value={clickedIndex}
+                                        className="btn btn-primary btn-xs" value={clickedIndex}
                                 >Save Article</button>
-                                <br></br>
+                                <br></br><br></br>
                         </div>
                     )
                     })}
