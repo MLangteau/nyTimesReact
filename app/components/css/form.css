@@ -1,0 +1,23 @@
+.panel-heading {
+    background-color: rgb(49, 96, 181);
+    box-shadow: inset 0 0 1em rgb(49, 96, 181);
+}
+
+.panel-title {
+    color: rgb(86, 165, 238);
+}
+
+.smPans {
+    background-color: rgb(129, 170, 255);
+    color: white;
+    border-color: rgb(49, 96, 181);
+    box-shadow: inset 0 0 1em rgb(49, 96, 181);
+}
+
+.wordsPanel {
+color: white;
+}
+
+.btnHover:hover {
+    background-color: green;
+}

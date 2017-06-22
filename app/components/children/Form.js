@@ -1,6 +1,8 @@
 import React from "react";
 
-import Header from "./Header";
+// Import CSS
+// import "../css/form.css";
+require('../css/form.css');
 
 class Form extends React.Component {
   constructor(props) {
@@ -47,85 +49,83 @@ class Form extends React.Component {
   render() {
 
     return (
-
-      <div className="panel panel-default">
-        {/*<div className="panel-heading">*/}
-          {/*<h3 className="panel-title text-center">New York Times Articles Scrubber</h3>*/}
-        {/*</div>*/}
-        <Header />
-        <div className="panel-body text-center">
-
-          <form onSubmit={this.handleSubmit}>
-            <div className="form-group">
-              <h4 className="panel-title text-center">
-                <strong>Search for and Save Articles of Interest</strong>
-              </h4>
-
-              {/*
-                Note how each of the form elements has an id that matches the state.
-                This is not necessary but it is convenient.
-                Also note how each has an onChange event associated with our handleChange event.
-              */}
-              <h4 className="panel-title text-center">
-                <strong>Title</strong>
-              </h4>
-              <input
-                type="text"
-                className="form-control text-center"
-                id="topic"
-                value={this.state.topic}
-                onChange={this.handleChange}
-                required
-              />
-              <br />
-              <h4 className="panel-title text-center">
-                <strong>Number of Articles (1-10)</strong>
-              </h4>
-              <input
-                  type="text"
-                  className="form-control text-center"
-                  id="numRecords"
-                  value={this.state.numRecords}
-                  onChange={this.handleChange}
-                  required
-              />
-              <br />
-              <h4 className="panel-title text-center">
-                <strong>Start Year</strong>
-              </h4>
-              <input
-                  type="text"
-                  className="form-control text-center"
-                  id="startYear"
-                  value={this.state.startYear}
-                  onChange={this.handleChange}
-                  required
-              />
-              {/*<br />*/}
-              {/*<h4 className="panel-title text-center">*/}
-                {/*<strong>End Year</strong>*/}
-              {/*</h4>*/}
-              {/*<input*/}
-                  {/*type="text"*/}
-                  {/*className="form-control text-center"*/}
-                  {/*id="endYear"*/}
-                  {/*value={this.state.endYear}*/}
-                  {/*onChange={this.handleChange}*/}
-                  {/*required*/}
-              {/*/>*/}
-              <br />
-              <br />
-
-              <button
-                type="searchBtn"
-                className="btn btn-primary"
-              >Search
-              </button>
-
+        <div className="panel panel-default smPans">
+            <div className="panel-heading savedRes">
+              <h4 className="panel-title text-center">Search for and Save Articles of Interest</h4>
             </div>
-          </form>
+
+            <div className="panel-body text-center wordsPanel">
+
+              <form onSubmit={this.handleSubmit}>
+                <div className="form-group">
+                    {/*<div className="searchPanel">*/}
+                      {/*<h4 className="panel-title text-center">*/}
+                        {/*<strong>Search for and Save Articles of Interest</strong>*/}
+                      {/*</h4>*/}
+                        {/*<br></br>*/}
+                    {/*</div>*/}
+                  {/*
+                    Note how each of the form elements has an id that matches the state.
+                    This is not necessary but it is convenient.
+                    Also note how each has an onChange event associated with our handleChange event.
+                  */}
+                  <h4 className="text-center">
+                    <strong>Title</strong>
+                  </h4>
+                  <input
+                    type="text"
+                    className="form-control text-center"
+                    id="topic"
+                    value={this.state.topic}
+                    onChange={this.handleChange}
+                    required
+                  />
+                  <br />
+                  <h4 className="text-center">
+                    <strong>Number of Articles (1-10)</strong>
+                  </h4>
+                  <input
+                      type="text"
+                      className="form-control text-center"
+                      id="numRecords"
+                      value={this.state.numRecords}
+                      onChange={this.handleChange}
+                      required
+                  />
+                  <br />
+                  <h4 className="text-center">
+                    <strong>Start Year</strong>
+                  </h4>
+                  <input
+                      type="text"
+                      className="form-control text-center"
+                      id="startYear"
+                      value={this.state.startYear}
+                      onChange={this.handleChange}
+                      required
+                  />
+                  {/*<br />*/}
+                  {/*<h4 className="text-center">*/}
+                    {/*<strong>End Year</strong>*/}
+                  {/*</h4>*/}
+                  {/*<input*/}
+                      {/*type="text"*/}
+                      {/*className="form-control text-center"*/}
+                      {/*id="endYear"*/}
+                      {/*value={this.state.endYear}*/}
+                      {/*onChange={this.handleChange}*/}
+                      {/*required*/}
+                  {/*/>*/}
+                  <br />
+                  <br />
+
+                  <button className="btn btn-primary btnHover">Search
+                  </button>
+
+                </div>
+              </form>
+            </div>
         </div>
-      </div>
     );
   }
 }
