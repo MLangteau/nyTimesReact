@@ -84,7 +84,7 @@ app.post("/api/saved", function(req, res) {
 });
 
 // This is the route we will send DELETE requests to remove the selected article.
-app.delete("/api/delete/:id", function(req, res) {
+app.delete("/api/saved/:id", function(req, res) {
     console.log("IN THE delete/remove req.params: ", req.params);
     // Here we'll remove the article based on the JSON input.
 

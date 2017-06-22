@@ -53,7 +53,7 @@ var helpers = {
         console.log(`made it to the helpers function-DELETE`);
         console.log(`_id for database remove ${idNum}`);
         // Send a delete request
-        return axios.delete('api/delete/' + idNum);
+        return axios.delete('api/saved/' + idNum);
     }
 };
 
